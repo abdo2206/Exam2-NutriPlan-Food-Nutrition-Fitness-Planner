@@ -1,0 +1,23 @@
+.loading {
+  display:none
+}
+
+#recipes-grid.recipe-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  body.mobile-sidebar-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  #search-filters-section #areaSection {
+    flex-wrap: nowrap;
+  }
+
+  #areaSection .area-btn {
+    flex: 0 0 auto;
+  }
+}
