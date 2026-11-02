@@ -169,6 +169,7 @@ Base API URL: `https://nutriplan-api.vercel.app/api`
 |---|---|---|
 | `/meals/areas` | `GET` | Fetches list of all available culinary regions |
 | `/meals/categories` | `GET` | Fetches all meal category names and descriptions |
+| `/meals/random?count={count}` | `GET` | Returns a requested number of random recipes |
 | `/meals/filter?category={name}` | `GET` | Returns paginated recipes belonging to a category |
 | `/meals/filter?area={area}` | `GET` | Returns paginated recipes belonging to a cuisine area |
 | `/meals/search?q={query}` | `GET` | Searches meals matching the query string |

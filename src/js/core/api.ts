@@ -54,6 +54,12 @@ export class MealDBApi {
     );
   }
 
+  getRandomMeal(count: number = 25): Promise<FilterMeals> {
+    return this.request<FilterMeals>(`/meals/random?count=${count}`, "fetch random meals", {
+      cache: "force-cache",
+    });
+  }
+
   getMealsByArea(area: string, page = 1, limit = 25): Promise<FilterMeals> {
     const params = new URLSearchParams({
       area,

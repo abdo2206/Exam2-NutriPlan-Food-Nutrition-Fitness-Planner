@@ -27,6 +27,11 @@ export class MealDBApi {
         });
         return this.request(`/meals/filter?${params}`, "fetch meals by category", { cache: "force-cache" });
     }
+    getRandomMeal(count = 25) {
+        return this.request(`/meals/random?count=${count}`, "fetch random meals", {
+            cache: "force-cache",
+        });
+    }
     getMealsByArea(area, page = 1, limit = 25) {
         const params = new URLSearchParams({
             area,

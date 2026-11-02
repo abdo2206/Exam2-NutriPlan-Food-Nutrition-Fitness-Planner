@@ -39,14 +39,7 @@ export class HomePage {
     renderLoadingSpinner(this.recipesGrid ?? "recipes-grid");
 
     try {
-      const [areas, categories, defaultMeals] = await Promise.all([
-        this.api.allAreas(),
-        this.api.allCategories(),
-        this.api.getMealsByFilter("Chicken", 1, 25),
-      ]);
-
-      areaButtonsRender(areas);
-      categoriesRender(categories);
+      const defaultMeals = await this.api.getRandomMeal(25);
       this.showFilteredMeals(defaultMeals);
       this.isInitialized = true;
     } catch (error) {
@@ -56,6 +49,18 @@ export class HomePage {
         "Could not load recipes",
         "Check your connection and refresh the page.",
       );
+      return;
+    }
+
+    try {
+      const [areas, categories] = await Promise.all([
+        this.api.allAreas(),
+        this.api.allCategories(),
+      ]);
+      areaButtonsRender(areas);
+      categoriesRender(categories);
+    } catch (error) {
+      console.error("Failed to load home page filters:", error);
     }
   }
 
@@ -104,7 +109,7 @@ export class HomePage {
     try {
       const result =
         area === "all"
-          ? await this.api.getMealsByFilter("Chicken", 1, 25)
+          ? await this.api.getRandomMeal(25)
           : await this.api.getMealsByArea(area, 1, 25);
       this.showFilteredMeals(result);
     } catch (err) {
